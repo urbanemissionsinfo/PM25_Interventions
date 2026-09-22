@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India | PM2.5 Sector-wise Emissions &amp; Interventions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <p class="eyebrow">Urban Emissions Info</p>
+    <h1>India | PM2.5 Sector-wise Emissions &amp; Interventions</h1>
+    <p class="subtitle">Explore how sector interventions shift India's total PM2.5 load</p>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Sector">
+  <button class="tab-btn active" data-tab="energy" role="tab" aria-selected="true">Energy</button>
+  <button class="tab-btn" data-tab="bricks" role="tab" aria-selected="false">Bricks</button>
+  <button class="tab-btn" data-tab="waste" role="tab" aria-selected="false">Waste</button>
+</nav>
+
+<main class="container">
+
+  <!-- ENERGY TAB -->
+  <section id="energy" class="tab-panel active" role="tabpanel">
+
+    <div class="callout">
+      Current PM2.5 emissions at 1295 BUs fired by Coal Fired Power Plants (CFPPs):
+      <strong>228 &ndash; 317 kilo Tonnes</strong>
+    </div>
+
+    <div class="field-row">
+      <label for="total_electricity">Total number of units produced (Billion Units)</label>
+      <input type="number" id="total_electricity" value="1717" step="10">
+      <p class="hint">1717 BU produced in 2023&ndash;24 FY | 2440 BU projected by 2029&ndash;30</p>
+    </div>
+
+    <div class="category">
+      <p class="category-label">Category A &mdash; Coal-based power generation</p>
+
+      <div class="panel level-1">
+        <h2>Intervention 1 &mdash; Replace coal with non-fossil sources</h2>
+        <label for="cfpp_percentage">Units produced by CFPPs (%)</label>
+        <input type="range" id="cfpp_percentage" min="0" max="100" value="75">
+        <div class="slider-value"><span id="cfpp_percentage_val">75</span>%</div>
+
+        <p class="result-line" id="cfpp_output"></p>
+        <p class="result-line strong" id="cfpp_pm25_output"></p>
+
+        <div class="sub-interventions">
+          <div class="panel level-2">
+            <h3>Intervention 1a &mdash; Emission control technologies in CFPPs</h3>
+            <p class="hint">Select techniques applied (reference case: standard ESP)</p>
+            <div class="checkbox-group">
+              <label class="checkbox-item"><input type="checkbox" class="technique" value="Washed Coal" checked> Washed Coal</label>
+              <label class="checkbox-item"><input type="checkbox" class="technique" value="FGD"> FGD</label>
+              <label class="checkbox-item"><input type="checkbox" class="technique" value="Upgraded ESP"> Upgraded ESP</label>
+            </div>
+            <p class="result-line strong" id="control_pm25_output"></p>
+          </div>
+
+          <div class="panel level-2">
+            <h3>Intervention 1b &mdash; Blend imported coal</h3>
+            <label for="blending_ratio">Blending ratio (%)</label>
+            <input type="range" id="blending_ratio" min="0" max="30" value="6">
+            <div class="slider-value"><span id="blending_ratio_val">6</span>%</div>
+            <p class="hint">Applies on top of Intervention 1a's emission control</p>
+            <p class="result-line strong" id="blend_pm25_output"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="category">
+      <p class="category-label">Category B &mdash; Fuel switching</p>
+
+      <div class="panel level-1">
+        <h2>Intervention 2 &mdash; Replace coal with gas</h2>
+        <label for="gas_percentage">Coal-based electricity replaced with gas (%)</label>
+        <input type="range" id="gas_percentage" min="0" max="100" value="10">
+        <div class="slider-value"><span id="gas_percentage_val">10</span>%</div>
+        <p class="result-line strong" id="gas_pm25_output"></p>
+      </div>
+    </div>
+
+    <div class="appendix">
+      <h3>Appendix</h3>
+      <p>PM2.5 emission factors for CFPPs in India: 49&ndash;68 tons/PJ</p>
+    </div>
+  </section>
+
+  <!-- BRICKS TAB -->
+  <section id="bricks" class="tab-panel" role="tabpanel">
+
+    <div class="grid-3">
+      <div class="panel">
+        <label for="total_bricks">Total number of bricks produced (Billions)</label>
+        <input type="number" id="total_bricks" value="233" step="1">
+        <label for="fcbtk_percentage">Bricks produced by FCBTKs (%)</label>
+        <input type="range" id="fcbtk_percentage" min="0" max="100" value="74">
+        <div class="slider-value"><span id="fcbtk_percentage_val">74</span>%</div>
+      </div>
+
+      <div class="panel">
+        <h2>Intervention 1 &mdash; Unclamping bricks sector</h2>
+        <label for="clamps_percentage">Bricks produced by Clamps (%)</label>
+        <input type="range" id="clamps_percentage" min="0" max="100" value="21">
+        <div class="slider-value"><span id="clamps_percentage_val">21</span>%</div>
+      </div>
+
+      <div class="panel">
+        <h2>Intervention 2 &mdash; Transition FCBTKs to Zigzag kilns</h2>
+        <label for="zzk_percentage">Bricks produced by ZZKs (%)</label>
+        <input type="range" id="zzk_percentage" min="0" max="100" value="5">
+        <div class="slider-value"><span id="zzk_percentage_val">5</span>%</div>
+      </div>
+    </div>
+
+    <p class="warning" id="bricks_warning" hidden>The percentages for all technologies must add up to 100%. Please adjust the sliders.</p>
+
+    <div class="grid-3" id="bricks_results">
+      <div class="panel">
+        <p id="fcbtk_bricks_output" class="result-line"></p>
+        <p id="fcbtk_pm25_output" class="result-line strong"></p>
+
+        <h2>Intervention 3 &mdash; Co-fire coal in FCBTKs with biomass pellets</h2>
+        <label for="replace_coal">Replace coal with biomass pellets (%)</label>
+        <input type="range" id="replace_coal" min="0" max="100" value="0">
+        <div class="slider-value"><span id="replace_coal_val">0</span>%</div>
+        <p id="cofire_pm25_output" class="result-line strong"></p>
+      </div>
+
+      <div class="panel">
+        <p id="clamps_bricks_output" class="result-line"></p>
+        <p id="clamps_pm25_output" class="result-line strong"></p>
+      </div>
+
+      <div class="panel">
+        <p id="zzk_bricks_output" class="result-line"></p>
+        <p id="zzk_pm25_output" class="result-line strong"></p>
+
+        <div class="total-card">
+          <p class="total-label">Total PM2.5 emissions</p>
+          <p class="total-value" id="total_pm25_value"></p>
+          <p class="total-delta" id="total_pm25_delta"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="appendix">
+      <h3>Appendix</h3>
+      <table>
+        <thead><tr><th>Technology</th><th>PM2.5 Emission Factor (g/kg bricks)</th></tr></thead>
+        <tbody>
+          <tr><td>FCBTK</td><td>0.18</td></tr>
+          <tr><td>Clamps</td><td>1</td></tr>
+          <tr><td>ZZKs</td><td>0.108</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- WASTE TAB -->
+  <section id="waste" class="tab-panel" role="tabpanel">
+    <div class="panel placeholder-panel">
+      <h2>Waste sector</h2>
+      <p>Interventions for the open waste burning sector are being added to this tool. Check back soon.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Urban Emissions Info &mdash; urbanemissions.info</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
